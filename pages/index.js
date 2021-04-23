@@ -1,10 +1,13 @@
 import Head from "next/head";
 import React from "react";
 import Router from "next/router";
-import styles from "../styles/Home.module.css";
+
+import { setScenario, setStep } from "../helpers/writeToState";
 
 export default function Home() {
   const handleClick = (variant) => {
+    setScenario(variant);
+    setStep(0);
     Router.push(`/scenario/${variant}/step/0`);
   };
   return (
