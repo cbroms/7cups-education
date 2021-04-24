@@ -2,6 +2,11 @@ import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";
 
+import {step1data} from "../../../../db/scenario0.js"
+
+import {updateData} from "../../../../helpers/dbHelpers"
+
+
 const Step = () => {
   const router = useRouter();
   const { scenarioId, stepId } = router.query;
@@ -22,11 +27,19 @@ const Step = () => {
     });
   }, []);
 
+  
+
+  console.log(step1data);
+
   return (
+    <>
     <p>
       Step: {scenarioId}, {stepId}
     </p>
+    <button onClick={() => updateData(step1data, 9)}>"Option 9"</button>
+    </>
   );
+  
 };
 
 export default Step;
