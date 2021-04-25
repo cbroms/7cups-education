@@ -12,6 +12,10 @@
   border-radius: 10px 10px 0px 10px;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .messageWrapper {
   width: 100%;
   display: flex;

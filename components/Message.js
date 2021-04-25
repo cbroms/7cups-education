@@ -5,6 +5,7 @@ const Message = (props) => {
   const hour = date.getHours() % 12;
   const ampm = date.getHours() > 12 ? "PM" : "AM";
   const minute = date.getMinutes();
+
   return (
     <div className={styles.messageLine}>
       <div
@@ -15,20 +16,22 @@ const Message = (props) => {
         <span
           className={`${styles.message} ${
             props.message.author === "me" && styles.self
-          }`}
+          } ${props.fullWidth ? styles.fullWidth : null}`}
         >
           {props.message.content}
         </span>
       </div>
-      <div
-        className={`${styles.messageWrapper} ${
-          props.message.author === "me" && styles.right
-        }`}
-      >
-        <span className={styles.messageTime}>
-          {hour}:{minute} {ampm}
-        </span>
-      </div>
+      {props.message.timestamp && (
+        <div
+          className={`${styles.messageWrapper} ${
+            props.message.author === "me" && styles.right
+          }`}
+        >
+          <span className={styles.messageTime}>
+            {hour}:{minute} {ampm}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

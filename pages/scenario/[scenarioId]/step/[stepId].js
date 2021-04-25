@@ -18,7 +18,7 @@ const Step = () => {
   const [data, setData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userResponse, setUserResponse] = useState("");
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(3);
 
   useEffect(() => {
     // fetch from the api here
@@ -37,7 +37,10 @@ const Step = () => {
       otherResponses: [
         { id: 514632, content: "How are you today?" },
         { id: 514623, content: "How are you today?" },
-        { id: 514233, content: "How are you today?" },
+        {
+          id: 514233,
+          content: "Hello, there how are you? I am jim. How are you today?",
+        },
         { id: 512362, content: "How are you today?" },
         { id: 514644, content: "How are you today?" },
         { id: 490862, content: "How are you today?" },
@@ -89,7 +92,7 @@ const Step = () => {
       />
     );
   } else if (data && step === 3) {
-    stepElement = <Answers />;
+    stepElement = <Answers responses={data.otherResponses} />;
   }
 
   return (

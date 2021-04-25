@@ -1,0 +1,26 @@
+.answersWrapper {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.answer {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.selected {
+  margin-left: 20px;
+  margin-top: 20px;
+  height: 22px;
+  width: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--dark-blue);
+}
+
+.filled {
+  background-color: var(--medium-blue);
+}
