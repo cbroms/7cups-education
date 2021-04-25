@@ -11,6 +11,7 @@ const Message = (props) => {
       <div
         className={`${styles.messageWrapper} ${
           (props.message.author === "me" || props.message.author === "7cups") &&
+          !props.left &&
           styles.right
         }`}
       >
@@ -29,6 +30,7 @@ const Message = (props) => {
           className={`${styles.messageWrapper} ${
             (props.message.author === "me" ||
               props.message.author === "7cups") &&
+            !props.left &&
             styles.right
           }`}
         >

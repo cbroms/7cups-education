@@ -11,6 +11,7 @@ import Chat from "../../../../components/Chat";
 import Vote from "../../../../components/Vote";
 import Entry from "../../../../components/Entry";
 import Answers from "../../../../components/Answers";
+import Example from "../../../../components/Example";
 
 import styles from "../../../../styles/Step.module.css";
 
@@ -46,7 +47,7 @@ const Step = (props) => {
       // update the messages
       setMessages(getMessages(true));
       setStep(step + 1);
-    } else if (step === 3) {
+    } else if (step === 4) {
       // submit voting on answers
       // redirect to next page
       if (props.data.nextStep)
@@ -80,6 +81,14 @@ const Step = (props) => {
     );
   } else if (props.data && step === 3) {
     stepElement = <Answers responses={props.data.otherResponses} />;
+  } else if (props.data && step === 4) {
+    // the last message is the 7cups model message
+    stepElement = (
+      <Example
+        description={props.data.cupsResponseDescription}
+        message={messages[messages.length - 1]}
+      ></Example>
+    );
   }
 
   return (
