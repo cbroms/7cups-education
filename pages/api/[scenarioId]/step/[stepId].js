@@ -1,5 +1,5 @@
-import listenerDb from "../../../../db/listenerDb";
-import memberDb from "../../../../db/memberDb";
+import { listenerDb } from "../../../../db/listenerDb";
+import { memberDb } from "../../../../db/memberDb";
 
 export default (req, res) => {
   let data = {};
