@@ -2,12 +2,23 @@ import Head from "next/head";
 import React from "react";
 import Router from "next/router";
 
-import { setScenario, setStep } from "../helpers/writeToState";
+import {
+  setScenario,
+  setStep,
+  wipeState,
+  addMessage,
+} from "../helpers/writeToState";
 
 export default function Home() {
   const handleClick = (variant) => {
+    // wipe the state in case they've done it  before
+    wipeState();
+    // add the scenario and step to state
     setScenario(variant);
     setStep(0);
+
+    addMessage("hi there", "jim23332", true);
+    addMessage("hello, this is a message", "me", true);
     Router.push(`/scenario/${variant}/step/0`);
   };
   return (

@@ -11,10 +11,11 @@ import { v4 as uuidv4 } from "uuid";
 }
 */
 
-export const addMessage = (message, isUser = false) => {
+export const addMessage = (message, author, isUser = false) => {
   const chatKey = isUser ? "chat" : "modelChat";
   const messageObj = {
     content: message,
+    author,
     id: uuidv4(),
     timestamp: new Date(),
   };
@@ -28,4 +29,11 @@ export const setScenario = (scenario) => {
 
 export const setStep = (step) => {
   set("step", step);
+};
+
+export const wipeState = () => {
+  set("chat", []);
+  set("modelChat", []);
+  set("scenario", null);
+  set("step", []);
 };

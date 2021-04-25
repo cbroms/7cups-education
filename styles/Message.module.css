@@ -1,0 +1,33 @@
+.message {
+  padding: 10px;
+  background-color: var(--light-blue);
+  border-radius: 10px 10px 10px 0px;
+  max-width: 275px;
+}
+
+.self {
+  color: white;
+  background-color: var(--dark-blue);
+  border-radius: 10px 10px 0px 10px;
+}
+
+.messageWrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.messageLine {
+  width: 100%;
+  height: min-content;
+}
+
+.messageTime {
+  margin-top: 5px;
+  color: var(--grey);
+  font-size: 0.8rem;
+}

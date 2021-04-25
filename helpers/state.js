@@ -1,6 +1,6 @@
 export const get = (key, fallback = null) => {
   const res = localStorage.getItem(key);
-  if (res !== undefined) return JSON.parse(res);
+  if (res !== null && res !== null) return JSON.parse(res);
   return fallback;
 };
 

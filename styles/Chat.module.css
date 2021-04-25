@@ -1,0 +1,8 @@
+.chat {
+  height: 50vh;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}

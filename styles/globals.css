@@ -7,8 +7,8 @@ body {
 }
 
 body {
-  padding: 40px;
-  max-width: 900px;
+  padding: 20px;
+  max-width: 940px;
   width: 100%;
   margin: 0 auto;
 }
@@ -20,6 +20,10 @@ a {
 
 * {
   box-sizing: border-box;
+  --dark-blue: #4090f6;
+  --medium-blue: #82c3ff;
+  --light-blue: #e4f2fe;
+  --grey: #c3c5ce;
 }
 
 button {
@@ -39,13 +43,13 @@ button:hover {
 }
 
 .primary {
-  background-color: #4090f6;
+  background-color: var(--dark-blue);
   color: white;
   box-shadow: 2px 2px 10px #408ff675;
 }
 
 .primary:hover {
-  box-shadow: 2px 2px 10px #408ff6;
+  box-shadow: 2px 2px 10px var(--dark-blue);
 }
 
 .spaced-right {
