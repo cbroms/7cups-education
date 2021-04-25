@@ -1,4 +1,7 @@
 import React from "react";
+
+import { getScenario } from "../helpers/readFromState";
+
 import styles from "../styles/Vote.module.css";
 
 const Vote = (props) => {
@@ -32,7 +35,7 @@ const Vote = (props) => {
               </button>
               {props.showResults && (
                 <div className={styles.resultsText}>
-                  Selected by {option.selected * 100}% of Listeners
+                  Selected by {option.selected * 100}% of {getScenario()}s
                 </div>
               )}
               {props.showResults && option.id === props.correctOption && (

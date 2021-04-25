@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import { getMessages } from "../../../../helpers/readFromState";
 import { addMessage } from "../../../../helpers/writeToState";
 
+import { memberDb } from "../../../../db/memberDb";
+import { listenerDb } from "../../../../db/listenerDb";
+
 import Chat from "../../../../components/Chat";
 import Vote from "../../../../components/Vote";
 import Entry from "../../../../components/Entry";
@@ -11,44 +14,15 @@ import Answers from "../../../../components/Answers";
 
 import styles from "../../../../styles/Step.module.css";
 
-const Step = () => {
+const Step = (props) => {
   const router = useRouter();
   const { scenarioId, stepId } = router.query;
 
-  const [data, setData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userResponse, setUserResponse] = useState("");
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    // fetch from the api here
-    setData({
-      options: [
-        {
-          id: 235623,
-          content: "Inquire about their situation",
-          selected: 0.87,
-        },
-        { id: 261262, content: "Suggest some options", selected: 0.03 },
-        { id: 261261, content: "Something else", selected: 0.1 },
-      ],
-      correctOption: 235623, // id of options array
-      description:
-        "At this point it would probably be best to inquire more about their situation.", // little explanation of the correct answer
-      otherResponses: [
-        { id: 514632, content: "How are you today?" },
-        { id: 514623, content: "How are you today?" },
-        {
-          id: 514233,
-          content: "Hello, there how are you? I am jim. How are you today?",
-        },
-        { id: 512362, content: "How are you today?" },
-        { id: 514644, content: "How are you today?" },
-        { id: 490862, content: "How are you today?" },
-      ], // ~5 random other user’s responses
-      nextStep: true, // true if there’s another step after this one, false otherwise
-    });
-
     setMessages(getMessages(true));
     return () => {
       // cleanup
@@ -78,17 +52,17 @@ const Step = () => {
 
   let stepElement = <div>Loading...</div>;
 
-  if (data && step < 2) {
+  if (props.data && step < 2) {
     stepElement = (
       <Vote
-        options={data.options}
-        correctOption={data.correctOption}
-        description={data.description}
+        options={props.data.options}
+        correctOption={props.data.correctOption}
+        description={props.data.description}
         onVote={onVote}
         showResults={step === 1}
       />
     );
-  } else if (data && step === 2) {
+  } else if (props.data && step === 2) {
     stepElement = (
       <Entry
         onChange={(value) => {
@@ -96,8 +70,8 @@ const Step = () => {
         }}
       />
     );
-  } else if (data && step === 3) {
-    stepElement = <Answers responses={data.otherResponses} />;
+  } else if (props.data && step === 3) {
+    stepElement = <Answers responses={props.data.otherResponses} />;
   }
 
   return (
@@ -111,14 +85,41 @@ const Step = () => {
           </button>
         </div>
       )}
-
-      {/* {data?.nextStep && step === 3 && (
-        <Link href={`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`}>
-          <a>Continue</a>
-        </Link>
-      )} */}
     </React.Fragment>
   );
 };
+
+export async function getStaticProps(context) {
+  let data = null;
+  if (context.params.scenarioId === "listener") {
+    data = listenerDb.steps[context.params.stepId];
+  } else if (context.params.scenarioId === "member") {
+    data = memberDb.steps[context.params.stepId];
+  }
+
+  if (data === null || data === undefined) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { data },
+  };
+}
+
+export async function getStaticPaths() {
+  let paths = [];
+
+  for (let i = 0; i < listenerDb.steps.length; i++) {
+    paths.push(`/scenario/listener/step/${i}`);
+  }
+  for (let i = 0; i < memberDb.steps.length; i++) {
+    paths.push(`/scenario/member/step/${i}`);
+  }
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
 
 export default Step;

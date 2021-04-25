@@ -30,10 +30,13 @@ export default function Home() {
 
       <h1>Hello</h1>
       <h2>What is your primary role on 7 Cups? </h2>
-      <button className="primary spaced-right" onClick={() => handleClick(1)}>
+      <button
+        className="primary spaced-right"
+        onClick={() => handleClick("member")}
+      >
         Member
       </button>
-      <button className="primary" onClick={() => handleClick(0)}>
+      <button className="primary" onClick={() => handleClick("listener")}>
         Listener
       </button>
     </React.Fragment>

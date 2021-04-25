@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 {
     chat: [],
     modelChat: [],
-    scenario: 0,
+    scenario: "listener",
     step: 0,
 }
 */

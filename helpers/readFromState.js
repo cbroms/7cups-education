@@ -5,7 +5,7 @@ import { get, set } from "./state";
 {
     chat: [],
     modelChat: [],
-    scenario: 0,
+    scenario: "listener",
     step: 0,
 }
 */
@@ -16,5 +16,5 @@ export const getMessages = (isUser = false) => {
 };
 
 export const getScenario = () => {
-  return get("scenario", 0);
+  return get("scenario", "");
 };
