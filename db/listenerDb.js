@@ -1,5 +1,11 @@
 export const listenerDb = {
-  fakeName: "sunset1242",
+  badUserName: "sunset1242",
+  initialMessages: [
+    {
+      author: "me",
+      content: "Hi, welcome to 7Cups, what can I get you?",
+    },
+  ],
   steps: [
     {
       options: [
@@ -16,16 +22,18 @@ export const listenerDb = {
         "At this point it would probably be best to inquire more about their situation.", // little explanation of the correct answer
       otherResponses: [
         { id: 514632, content: "How are you today?" },
-        { id: 514623, content: "How are you today?" },
+        { id: 514623, content: "Ok?" },
         {
           id: 514233,
-          content: "Hello, there how are you? I am jim. How are you today?",
+          content: "Hello, there how are you?",
         },
-        { id: 512362, content: "How are you today?" },
-        { id: 514644, content: "How are you today?" },
-        { id: 490862, content: "How are you today?" },
+        { id: 512362, content: "That's not very nice." },
+        { id: 514644, content: "Hmm" },
+        { id: 490862, content: "Don't be a mean person." },
       ], // ~5 random other user’s responses
-      nextStep: true, // true if there’s another step after this one, false otherwise
+      cupsResponse: "Hello, how's it going?",
+      badResponse: "you're dumb",
+      nextStep: false, // true if there’s another step after this one, false otherwise
     },
   ],
 };

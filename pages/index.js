@@ -2,23 +2,34 @@ import Head from "next/head";
 import React from "react";
 import Router from "next/router";
 
+import { listenerDb } from "../db/listenerDb";
+import { memberDb } from "../db/memberDb";
+
 import {
   setScenario,
   setStep,
   wipeState,
   addMessage,
+  setBadUser,
 } from "../helpers/writeToState";
 
-export default function Home() {
+const Home = (props) => {
   const handleClick = (variant) => {
     // wipe the state in case they've done it  before
     wipeState();
+
     // add the scenario and step to state
     setScenario(variant);
     setStep(0);
 
-    addMessage("hi there", "jim23332", true);
-    addMessage("hello, this is a message", "me", true);
+    // populate the initial messages
+    for (const message of props.data[variant].initialMessages) {
+      addMessage(message.content, message.author);
+    }
+
+    // populate the bad user's name
+    setBadUser(props.data[variant].badUserName);
+
     Router.push(`/scenario/${variant}/step/0`);
   };
   return (
@@ -41,4 +52,23 @@ export default function Home() {
       </button>
     </React.Fragment>
   );
+};
+
+export async function getStaticProps() {
+  const data = {
+    listener: {
+      badUserName: listenerDb.badUserName,
+      initialMessages: listenerDb.initialMessages,
+    },
+    member: {
+      badUserName: memberDb.badUserName,
+      initialMessages: memberDb.initialMessages,
+    },
+  };
+
+  return {
+    props: { data },
+  };
 }
+
+export default Home;

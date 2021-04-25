@@ -1,5 +1,15 @@
 export const memberDb = {
-  fakeName: "sunset1242",
+  badUserName: "sunset1242",
+  initialMessages: [
+    {
+      author: "me",
+      content: "Hi, I need help",
+    },
+    {
+      author: "sunset1242",
+      content: "Yeah, sucks for you man",
+    },
+  ],
   steps: [
     {
       options: [

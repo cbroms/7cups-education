@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-import { getMessages } from "../../../../helpers/readFromState";
+import { getBadUser, getMessages } from "../../../../helpers/readFromState";
 import { addMessage } from "../../../../helpers/writeToState";
 
 import { memberDb } from "../../../../db/memberDb";
@@ -23,7 +23,10 @@ const Step = (props) => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
+    // add the bad user's response
+    addMessage(props.data.badResponse, getBadUser(), true);
     setMessages(getMessages(true));
+
     return () => {
       // cleanup
     };
@@ -36,14 +39,19 @@ const Step = (props) => {
 
   const handleContinue = () => {
     if (step === 2) {
-      // submit entry content
+      // submit entry content (user's response)
       addMessage(userResponse, "me", true);
+      // add the model response
+      addMessage(props.data.cupsResponse, "7cups", true);
+      // update the messages
       setMessages(getMessages(true));
       setStep(step + 1);
     } else if (step === 3) {
       // submit voting on answers
       // redirect to next page
-      router.push(`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`);
+      if (props.data.nextStep)
+        router.push(`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`);
+      else router.push(`/scenario/${scenarioId}/complete`);
       setStep(0);
     } else {
       setStep(step + 1);

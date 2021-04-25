@@ -24,6 +24,7 @@ a {
   --dark-blue: #4090f6;
   --medium-blue: #82c3ff;
   --light-blue: #e4f2fe;
+  --gold: #ff7900;
   --grey: #c3c5ce;
 }
 
@@ -69,7 +70,14 @@ button:disabled:hover {
 }
 
 .prompt {
+  display: flex;
+  align-items: flex-end;
   font-weight: bold;
   margin: 20px 0;
   max-width: 450px;
+  height: 85px;
+}
+
+p {
+  max-width: 550px;
 }

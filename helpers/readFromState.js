@@ -6,15 +6,19 @@ import { get, set } from "./state";
     chat: [],
     modelChat: [],
     scenario: "listener",
+    badUserName: "badguy123",
     step: 0,
 }
 */
 
-export const getMessages = (isUser = false) => {
-  const chatKey = isUser ? "chat" : "modelChat";
-  return get(chatKey, []);
+export const getMessages = () => {
+  return get("chat", []);
 };
 
 export const getScenario = () => {
   return get("scenario", "");
+};
+
+export const getBadUser = () => {
+  return get("badUserName", "badguy123");
 };
