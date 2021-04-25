@@ -18,7 +18,7 @@ const Step = () => {
   const [data, setData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userResponse, setUserResponse] = useState("");
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     // fetch from the api here
@@ -33,7 +33,8 @@ const Step = () => {
         { id: 261261, content: "Something else", selected: 0.1 },
       ],
       correctOption: 235623, // id of options array
-      description: "What should you do next?", // little explanation of the correct answer
+      description:
+        "At this point it would probably be best to inquire more about their situation.", // little explanation of the correct answer
       otherResponses: [
         { id: 514632, content: "How are you today?" },
         { id: 514623, content: "How are you today?" },
@@ -64,12 +65,15 @@ const Step = () => {
       // submit entry content
       addMessage(userResponse, "me", true);
       setMessages(getMessages(true));
+      setStep(step + 1);
     } else if (step === 3) {
       // submit voting on answers
       // redirect to next page
       router.push(`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`);
+      setStep(0);
+    } else {
+      setStep(step + 1);
     }
-    setStep(step + 1);
   };
 
   let stepElement = <div>Loading...</div>;
@@ -79,6 +83,7 @@ const Step = () => {
       <Vote
         options={data.options}
         correctOption={data.correctOption}
+        description={data.description}
         onVote={onVote}
         showResults={step === 1}
       />

@@ -25,3 +25,9 @@
   font-size: 0.8rem;
   margin-bottom: 10px;
 }
+
+.recommendedText {
+  color: var(--medium-blue);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
