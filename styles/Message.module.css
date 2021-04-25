@@ -3,6 +3,7 @@
   background-color: var(--light-blue);
   border-radius: 10px 10px 10px 0px;
   max-width: 275px;
+  margin-top: 10px;
 }
 
 .self {

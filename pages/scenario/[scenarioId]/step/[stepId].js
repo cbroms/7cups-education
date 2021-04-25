@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 import { getMessages } from "../../../../helpers/readFromState";
+import { addMessage } from "../../../../helpers/writeToState";
 
 import Chat from "../../../../components/Chat";
 import Vote from "../../../../components/Vote";
@@ -16,7 +17,8 @@ const Step = () => {
 
   const [data, setData] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [step, setStep] = useState(0);
+  const [userResponse, setUserResponse] = useState("");
+  const [step, setStep] = useState(2);
 
   useEffect(() => {
     // fetch from the api here
@@ -32,7 +34,14 @@ const Step = () => {
       ],
       correctOption: 235623, // id of options array
       description: "What should you do next?", // little explanation of the correct answer
-      otherResponses: [{ id: 51462, content: "How are you today?" }], // ~5 random other user’s responses
+      otherResponses: [
+        { id: 514632, content: "How are you today?" },
+        { id: 514623, content: "How are you today?" },
+        { id: 514233, content: "How are you today?" },
+        { id: 512362, content: "How are you today?" },
+        { id: 514644, content: "How are you today?" },
+        { id: 490862, content: "How are you today?" },
+      ], // ~5 random other user’s responses
       nextStep: true, // true if there’s another step after this one, false otherwise
     });
 
@@ -50,6 +59,8 @@ const Step = () => {
   const handleContinue = () => {
     if (step === 2) {
       // submit entry content
+      addMessage(userResponse, "me", true);
+      setMessages(getMessages(true));
     } else if (step === 3) {
       // submit voting on answers
       // redirect to next page
@@ -70,7 +81,13 @@ const Step = () => {
       />
     );
   } else if (data && step === 2) {
-    stepElement = <Entry />;
+    stepElement = (
+      <Entry
+        onChange={(value) => {
+          setUserResponse(value);
+        }}
+      />
+    );
   } else if (data && step === 3) {
     stepElement = <Answers />;
   }
