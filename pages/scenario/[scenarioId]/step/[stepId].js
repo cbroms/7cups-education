@@ -79,10 +79,10 @@ const Step = (props) => {
   if (props.data && step < 2) {
     stepElement = (
       <Vote
-        options={props.data.options}
-        correctOptions={props.data.correctOptions}
-        correctOption={props.data.correctOption}
-        description={props.data.description}
+        options={props.data?.options}
+        correctOptions={props.data?.correctOptions}
+        correctOption={props.data?.correctOption}
+        description={props.data?.description}
         onSelectVote={onSelectVote}
         showResults={step === 1}
       />
