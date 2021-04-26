@@ -39,7 +39,7 @@ const Step = (props) => {
     return () => {
       // cleanup
     };
-  }, [props.data.badResponse]);
+  }, [props.data]);
 
   const onSelectVote = (selected) => {
     setSelectedOptions(selected);
@@ -79,10 +79,10 @@ const Step = (props) => {
   if (props.data && step < 2) {
     stepElement = (
       <Vote
-        options={props.data.options}
-        correctOptions={props.data.correctOptions}
-        correctOption={props.data.correctOption}
-        description={props.data.description}
+        options={props.data?.options}
+        correctOptions={props.data?.correctOptions}
+        correctOption={props.data?.correctOption}
+        description={props.data?.description}
         onSelectVote={onSelectVote}
         showResults={step === 1}
       />
@@ -112,7 +112,7 @@ const Step = (props) => {
       <Chat chat={messages}></Chat>
       {stepElement}
       {(step > 0 ||
-        (props.data.correctOptions && selectedOptions.length > 0)) && (
+        (props.data?.correctOptions && selectedOptions.length > 0)) && (
         <div className={styles.continueWrapper}>
           <button className="primary" onClick={handleContinue}>
             Continue
