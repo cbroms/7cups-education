@@ -112,7 +112,7 @@ const Step = (props) => {
       <Chat chat={messages}></Chat>
       {stepElement}
       {(step > 0 ||
-        (props.data.correctOptions && selectedOptions.length > 0)) && (
+        (props.data?.correctOptions && selectedOptions.length > 0)) && (
         <div className={styles.continueWrapper}>
           <button className="primary" onClick={handleContinue}>
             Continue
