@@ -42,6 +42,7 @@ export const memberDb = {
 
     // STEP 2
     // Need support for not showing the chat bubble if there's no badResponse + somehow selected box styling appears on the next step as well
+    // + Instead of what would you do next? we need a text  "What guidelines did this listener break? Select all that apply."
     {
       badResponse: "",
       options: [
@@ -54,7 +55,7 @@ export const memberDb = {
       ],
       correctOptions: [235623, 261262], // id of options array
       description:
-        "As a member of 7 Cups, if you ever feel uncomfortable by a listener’s response, feel free to speak up and let them know. ", // little explanation of the correct answer
+        "Remember to always stay respectful while not crossing the boundary of giving advice", // little explanation of the correct answer
       otherResponses: [], // ~6 random other user’s responses
       cupsResponse: "", // the model response from 7 cups
       cupsResponseDescription:
