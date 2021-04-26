@@ -39,7 +39,7 @@ const Step = (props) => {
     return () => {
       // cleanup
     };
-  }, [props.data.badResponse]);
+  }, [props.data]);
 
   const onSelectVote = (selected) => {
     setSelectedOptions(selected);
