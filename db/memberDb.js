@@ -2,39 +2,85 @@ export const memberDb = {
   badUserName: "sunset1242",
   initialMessages: [
     {
+      author: "sunset1242",
+      content: "Hello, I’m a Listener at 7 Cups. What’s on your mind?",
+    },
+    {
       author: "me",
-      content: "Hi, welcome to 7Cups!",
+      content: "I’ve got a lot on my mind. I’ve been feeling pretty lonely and feel like I don’t have many friends."
     },
   ], // the initial state of the chat, if we want to pre-populate it with messages
   steps: [
+    // STEP 1
     {
-      badResponse: "you're dumb", // the bad user's response
+      badResponse: "That’s interesting .. it must be hard being a loser with no friends..  you should go out and get a life and maybe a girlfriend/boyfriend or something.", // the bad listener's response
       options: [
         {
           id: 235623,
-          content: "Inquire about their situation",
-          selected: 0.87,
+          content: "Ignore the listener and continue",
+          selected: 0.12,
         },
-        { id: 261262, content: "Suggest some options", selected: 0.03 },
-        { id: 261261, content: "Something else", selected: 0.1 },
+        { id: 261262, content: "Respond rudely to the listener", selected: 0.03 },
+        { id: 261261, content: "Flag the message", selected: 0.85 },
       ],
-      correctOption: 235623, // id of options array
+      correctOption: 261261, // id of options array
       description:
-        "At this point it would probably be best to inquire more about their situation.", // little explanation of the correct answer
+        "We recommend immediately flagging any messages that think could be harmful to you or other members.", // little explanation of the correct answer
       otherResponses: [
-        { id: 514632, content: "How are you today?" },
-        { id: 514623, content: "Ok?" },
+        { id: 514632, content: "You’re so rude lol." },
+        { id: 514623, content: "The way you’re responding isn’t very helpful and doesn’t make me feel supported." },
         {
           id: 514233,
-          content: "Hello, there how are you?",
+          content: "I don’t feel like you are using active listening to help me in this situation.",
         },
-        { id: 512362, content: "That's not very nice." },
-        { id: 514644, content: "Hmm" },
-        { id: 490862, content: "Don't be a mean person." },
+        { id: 512362, content: "As a member of 7 Cups, I don’t feel very supported by you right now." },
       ], // ~6 random other user’s responses
-      cupsResponse: "Hello, how's it going?", // the model response from 7 cups
+      cupsResponse: "Your language doesn’t feel very supportive to me. I don’t feel heard and I’m seeking emotional support right now.", // the model response from 7 cups
+      cupsResponseDescription: "As a member of 7 Cups, you deserve to feel respected and treated appropriately. Listeners are trained in active listening and should help you feel better and never worse. If you come across this type of chat, remind the listener of how you’re feeling. If after speaking up, they refuse and continue inappropriate behavior, let them know that you are going to have to end the chat or report them.",
+      nextStep: true, // true if there’s another step after this one, false otherwise
+    },
+
+    // STEP 2
+    // Need support for not showing the chat bubble if there's no badResponse + somehow selected box styling appears on the next step as well
+    {
+      badResponse: "",
+      options: [
+        {
+          id: 235623,
+          content: "Remain professional, kind, and respectful",
+        },
+        { id: 261262, content: "Don’t give advice", },
+        { id: 261261, content: "Never create multiple accounts", },
+      ],
+      correctOptions: [235623, 261262], // id of options array
+      description:
+        "As a member of 7 Cups, if you ever feel uncomfortable by a listener’s response, feel free to speak up and let them know. ", // little explanation of the correct answer
+      otherResponses: [], // ~6 random other user’s responses
+      cupsResponse: "", // the model response from 7 cups
       cupsResponseDescription:
-        "Remind members of how listeners can provide support and help them in whatever they are going through, as long as it abides by Community Guidelines.",
+        "",
+      nextStep: true, // true if there’s another step after this one, false otherwise
+    },
+
+    // STEP 3
+    {
+      badResponse: "Well it sounds like you’re being really sensitive!!! Being too sensitive could be the cause of your loneliness and inability to make friends.", // the bad user's response
+      options: [
+        {
+          id: 235623,
+          content: "Respond angrily",
+          selected: 0.17,
+        },
+        { id: 261262, content: "Report the listener", selected: 0.73 },
+        { id: 261261, content: "Something else", selected: 0.1 },
+      ],
+      correctOption: 261262, // id of options array
+      description:
+        "If a listener continues to break community guidelines or makes you feel uncomfortable, you have the right to end the chat or report the listener. Reporting can help prevent further inappropriate behavior from occuring.", // little explanation of the correct answer
+      otherResponses: [], // ~6 random other user’s responses
+      cupsResponse: "", // the model response from 7 cups
+      cupsResponseDescription:
+        "",
       nextStep: false, // true if there’s another step after this one, false otherwise
     },
   ],
