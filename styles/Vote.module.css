@@ -10,10 +10,15 @@
   width: calc(300px - 10px);
   min-height: 100px;
   margin-bottom: 10px;
+  border: 2px solid var(--light-blue);
 }
 
 .vote {
   margin: 10px 0;
+}
+
+.selected {
+  border: 2px solid var(--dark-blue);
 }
 
 .vote:not(:last-child) {

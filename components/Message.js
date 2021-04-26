@@ -2,9 +2,8 @@ import styles from "../styles/Message.module.css";
 
 const Message = (props) => {
   const date = new Date(props.message.timestamp);
-  const hour = date.getHours() % 12;
-  const ampm = date.getHours() > 12 ? "PM" : "AM";
-  const minute = date.getMinutes();
+  // format the timestring, removing seconds
+  const timeString = date.toLocaleTimeString().replace(/:\d+\s{1}/g, " ");
 
   return (
     <div className={styles.messageLine}>
@@ -38,9 +37,7 @@ const Message = (props) => {
             {props.message.author === "7cups" && "7 Cups model response"}
             {props.message.author === "me" && "Your message"}
           </span>
-          <span className={styles.messageTime}>
-            {hour}:{minute} {ampm}
-          </span>
+          <span className={styles.messageTime}>{timeString}</span>
         </div>
       )}
     </div>

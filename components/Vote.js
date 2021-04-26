@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { getScenario } from "../helpers/readFromState";
 
 import styles from "../styles/Vote.module.css";
 
 const Vote = (props) => {
+  const [selected, setSelected] = useState([]);
+
+  const onVote = (id) => {
+    let newSelected = selected;
+    if (selected.includes(id)) {
+      newSelected = selected.filter((e) => e !== id);
+    } else {
+      newSelected = [...selected, id];
+    }
+
+    setSelected(newSelected);
+    props.onSelectVote(newSelected);
+  };
   return (
     <React.Fragment>
       {props.showResults && <div className="prompt">{props.description}</div>}
@@ -25,9 +38,11 @@ const Vote = (props) => {
                       }
                     : null
                 }
-                className={styles.voteButton}
+                className={`${styles.voteButton} ${
+                  selected.includes(option.id) ? styles.selected : null
+                }`}
                 onClick={() => {
-                  props.onVote(option.id);
+                  onVote(option.id);
                 }}
                 disabled={props.showResults}
               >
@@ -38,9 +53,13 @@ const Vote = (props) => {
                   Selected by {option.selected * 100}% of {getScenario()}s
                 </div>
               )}
-              {props.showResults && option.id === props.correctOption && (
-                <div className={styles.recommendedText}>Recommended option</div>
-              )}
+              {props.showResults &&
+                (option.id === props.correctOption ||
+                  props.correctOptions?.includes(option.id)) && (
+                  <div className={styles.recommendedText}>
+                    Recommended option
+                  </div>
+                )}
             </div>
           );
         })}

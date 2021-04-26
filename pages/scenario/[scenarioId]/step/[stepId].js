@@ -20,10 +20,18 @@ const Step = (props) => {
   const { scenarioId, stepId } = router.query;
 
   const [messages, setMessages] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [userResponse, setUserResponse] = useState("");
   const [step, setStep] = useState(0);
+  const [endStep, setEndStep] = useState(4);
 
   useEffect(() => {
+    if (props.data.otherResponses.length === 0) {
+      // if there are no free response options, end the scenario before that step
+      setEndStep(1);
+    } else {
+      setEndStep(4);
+    }
     // add the bad user's response
     addMessage(props.data.badResponse, getBadUser(), true);
     setMessages(getMessages(true));
@@ -31,29 +39,36 @@ const Step = (props) => {
     return () => {
       // cleanup
     };
-  }, []);
+  }, [props.data.badResponse]);
 
-  const onVote = () => {
-    // submit vote
-    setStep(step + 1);
+  const onSelectVote = (selected) => {
+    setSelectedOptions(selected);
+
+    if (props.data.correctOption) {
+      // if it's a single select, move on when an option is chosen
+      setStep(step + 1);
+    }
   };
 
   const handleContinue = () => {
-    if (step === 2) {
-      // submit entry content (user's response)
-      addMessage(userResponse, "me", true);
+    if (step === endStep) {
+      if (props.data.nextStep) {
+        router.push(`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`);
+        setStep(0);
+      } else router.push(`/scenario/${scenarioId}/complete`);
+    } else if (step === 2) {
+      // add the response
+      if (userResponse !== "") {
+        // submit entry content (user's response)
+        addMessage(userResponse, "me", true);
+      }
       // add the model response
       addMessage(props.data.cupsResponse, "7cups", true);
       // update the messages
       setMessages(getMessages(true));
       setStep(step + 1);
     } else if (step === 4) {
-      // submit voting on answers
-      // redirect to next page
-      if (props.data.nextStep)
-        router.push(`/scenario/${scenarioId}/step/${parseInt(stepId) + 1}`);
-      else router.push(`/scenario/${scenarioId}/complete`);
-      setStep(0);
+      // TODO: submit voting on answers
     } else {
       setStep(step + 1);
     }
@@ -65,9 +80,10 @@ const Step = (props) => {
     stepElement = (
       <Vote
         options={props.data.options}
+        correctOptions={props.data.correctOptions}
         correctOption={props.data.correctOption}
         description={props.data.description}
-        onVote={onVote}
+        onSelectVote={onSelectVote}
         showResults={step === 1}
       />
     );
@@ -95,7 +111,8 @@ const Step = (props) => {
     <React.Fragment>
       <Chat chat={messages}></Chat>
       {stepElement}
-      {step > 0 && (
+      {(step > 0 ||
+        (props.data.correctOptions && selectedOptions.length > 0)) && (
         <div className={styles.continueWrapper}>
           <button className="primary" onClick={handleContinue}>
             Continue
