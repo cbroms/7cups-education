@@ -11,8 +11,14 @@ const Example = (props) => {
         Here's an example response from our team at 7 Cups. Remember, there's
         always more than one right way to respond.
       </div>
-      <Message left message={props.message}></Message>
-      <p className={styles.exampleDescription}>{props.description}</p>
+      <div className={styles.example}>
+        <div className={styles.exampleItem}>
+          <Message left message={props.message}></Message>
+        </div>
+        <div className={styles.exampleItem}>
+          <p className={styles.exampleDescription}>{props.description}</p>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

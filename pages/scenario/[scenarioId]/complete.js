@@ -23,7 +23,7 @@ const Complete = () => {
         behave badly are removed from the community.{" "}
       </p>
       <h3>Here's how your chat went</h3>
-      <Chat show7Cups chat={messages}></Chat>
+      <Chat show7Cups chat={messages} height={65}></Chat>
     </React.Fragment>
   );
 };

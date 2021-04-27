@@ -25,7 +25,7 @@ a {
   --medium-blue: #82c3ff;
   --light-blue: #e4f2fe;
   --gold: #ff7900;
-  --grey: #c3c5ce;
+  --grey: #9799a1;
 }
 
 button {
@@ -78,6 +78,15 @@ button:disabled:hover {
   height: 85px;
 }
 
-p {
+p,
+h1,
+h2,
+h3,
+h4 {
   max-width: 550px;
+}
+
+.centered {
+  margin-right: auto;
+  margin-left: auto;
 }

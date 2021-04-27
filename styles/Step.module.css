@@ -4,3 +4,8 @@
   display: flex;
   margin-top: 20px;
 }
+
+.chatWrapper {
+  height: 40vh;
+  overflow: scroll;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { getScenario } from "../helpers/readFromState";
 
@@ -6,6 +6,10 @@ import styles from "../styles/Vote.module.css";
 
 const Vote = (props) => {
   const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    setSelected([]);
+  }, [props.options]);
 
   const onVote = (id) => {
     let newSelected = selected;
@@ -22,7 +26,10 @@ const Vote = (props) => {
     <React.Fragment>
       {props.showResults && <div className="prompt">{props.description}</div>}
       {!props.showResults && (
-        <div className="prompt">What would you do next?</div>
+        <div className="prompt">
+          What would you do next?{" "}
+          {props.correctOptions ? "Select all that apply." : null}
+        </div>
       )}
       <div className={styles.voteWrapper}>
         {props.options.map((option) => {

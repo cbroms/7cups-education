@@ -38,18 +38,30 @@ const Home = (props) => {
         <title>Responding to bad behavior</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h1>Hello</h1>
-      <h2>What is your primary role on 7 Cups? </h2>
-      <button
-        className="primary spaced-right"
-        onClick={() => handleClick("member")}
-      >
-        Member
-      </button>
-      <button className="primary" onClick={() => handleClick("listener")}>
-        Listener
-      </button>
+      <h1 className="centered">Training Scenario</h1>
+      <h2 className="centered">Responding to Bad Behavior</h2>
+      <p className="centered">
+        Sometimes you’ll encounter those who don’t follow the community
+        guidelines and may cause harm to you and others. Learning how to best
+        address these situations is an important part of keeping the community
+        safe.
+      </p>
+      <p className="centered">
+        See how you and others in the community would respond to a series of
+        short simulated scenarios in one-on-one chats.
+      </p>
+      <h4 className="centered">To get started, what's your role on 7 Cups?</h4>
+      <p className="centered">
+        <button
+          className="primary spaced-right"
+          onClick={() => handleClick("member")}
+        >
+          Member
+        </button>
+        <button className="primary" onClick={() => handleClick("listener")}>
+          Listener
+        </button>
+      </p>
     </React.Fragment>
   );
 };

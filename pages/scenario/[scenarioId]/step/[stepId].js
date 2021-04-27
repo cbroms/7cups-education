@@ -26,6 +26,8 @@ const Step = (props) => {
   const [endStep, setEndStep] = useState(4);
 
   useEffect(() => {
+    setSelectedOptions([]);
+
     if (props.data.otherResponses.length === 0) {
       // if there are no free response options, end the scenario before that step
       setEndStep(1);
@@ -33,7 +35,9 @@ const Step = (props) => {
       setEndStep(4);
     }
     // add the bad user's response
-    addMessage(props.data.badResponse, getBadUser(), true);
+    if (props.data.badResponse) {
+      addMessage(props.data.badResponse, getBadUser(), true);
+    }
     setMessages(getMessages(true));
 
     return () => {
@@ -109,7 +113,9 @@ const Step = (props) => {
 
   return (
     <React.Fragment>
-      <Chat chat={messages}></Chat>
+      <div className={styles.chatWrapper}>
+        <Chat chat={messages} scollDown height={40}></Chat>
+      </div>
       {stepElement}
       {(step > 0 ||
         (props.data?.correctOptions && selectedOptions.length > 0)) && (
