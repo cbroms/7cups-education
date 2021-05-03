@@ -71,7 +71,12 @@ const Vote = (props) => {
             </div>
           );
         })}
+        {props.showResults && (
+          <div className={styles.resultsText}>Note: majority selection by users does not always match the recommended option</div>
+        )}
       </div>
+     
+
     </React.Fragment>
   );
 };

@@ -3,7 +3,7 @@ export const listenerDb = {
   initialMessages: [
     {
       author: "me",
-      content: "Hi, welcome to 7Cups!",
+      content: "Hello! nice to meet you",
     },
   ], // the initial state of the chat, if we want to pre-populate it with messages
   steps: [
@@ -16,7 +16,7 @@ export const listenerDb = {
           content: "Inquire about their situation",
           selected: 0.87,
         },
-        { id: 261262, content: "Suggest some options", selected: 0.03 },
+        { id: 261262, content: "Suggest a few options", selected: 0.03 },
         { id: 261261, content: "Something else", selected: 0.1 },
       ],
       correctOption: 235623, // id of options array
@@ -41,7 +41,7 @@ export const listenerDb = {
         },
       ], // ~6 random other user’s responses
       cupsResponse:
-        "I’m sorry that you’re feeling lonely. Do you want to talk more about it?", // the model response from 7 cups
+        "I’m sorry that you’re feeling lonely. That can be a very isolating feeling. Do you want to talk more about it?", // the model response from 7 cups
       cupsResponseDescription:
         "When a member comes to 7 Cups seeking support, we want to make sure they feel heard by using Active Listening. We can respectfully inquire more about their situation and make them feel heard.",
       nextStep: true, // true if there’s another step after this one, false otherwise
@@ -160,9 +160,9 @@ export const listenerDb = {
         },
       ], // ~6 random other user’s responses
       cupsResponse:
-        "I’m sorry you feel that way. As a listener, we can use emotional active listening to support you. We can discuss more about how you’re feeling.", // the model response from 7 cups
+        "I’m sorry you feel that way. As a listener, we can use emotional active listening to support you. We can discuss more about how you’re feeling. I’m dedicated to helping you, but please remember I am also human and will try to respond as soon as possible.", // the model response from 7 cups
       cupsResponseDescription:
-        "Remind members of how listeners can provide support and help them in whatever they are going through, as long as it abides by Community Guidelines.",
+        "Remind members of how listeners can provide support and help them in whatever they are going through, as long as it abides by Community Guidelines. Also remind members that as a listener, you are also a human with other commitments and responsibilities.",
       nextStep: true, // true if there’s another step after this one, false otherwise
     },
 

@@ -66,9 +66,10 @@ export const memberDb = {
         {
           id: 235623,
           content: "Remain professional, kind, and respectful",
+          selected: 0.78,
         },
-        { id: 261262, content: "Don’t give advice" },
-        { id: 261261, content: "Never create multiple accounts" },
+        { id: 261262, content: "Don’t give advice", selected: 0.73,},
+        { id: 261261, content: "Never create multiple accounts", selected: 0.21,},
       ],
       correctOptions: [235623, 261262], // id of options array
       description:
@@ -82,11 +83,11 @@ export const memberDb = {
     // STEP 3
     {
       badResponse:
-        "Well it sounds like you’re being really sensitive!!! Being too sensitive could be the cause of your loneliness and inability to make friends.", // the bad user's response
+        "Well it sounds like you’re being really sensitive!!! I’m just trying to help.  Why don’t I take you out to dinner to help you feel a little less lonely. Heres my snapchat: http://www.snapchat.com/listener101", // the bad user's response
       options: [
         {
           id: 235623,
-          content: "Respond angrily",
+          content: "Agree to dinner",
           selected: 0.17,
         },
         { id: 261262, content: "Report the listener", selected: 0.73 },
@@ -95,6 +96,25 @@ export const memberDb = {
       correctOption: 261262, // id of options array
       description:
         "If a listener continues to break community guidelines or makes you feel uncomfortable, you have the right to end the chat or report the listener. Reporting can help prevent further inappropriate behavior from occuring.", // little explanation of the correct answer
+      otherResponses: [], // ~6 random other user’s responses
+      cupsResponse: "", // the model response from 7 cups
+      cupsResponseDescription: "",
+      nextStep: true, // true if there’s another step after this one, false otherwise
+    },
+
+    // STEP 4
+    {
+      badResponse: "",
+      options: [
+        {
+          id: 235623,
+          content: "Engaging in flirting or sexting", selected: 0.91
+        },
+        { id: 261262, content: "Sharing links to personal information", selected: 0.89 },
+        { id: 261261, content: "Maintaining a confidential atmosphere", selected: 0.90 },
+      ],
+      correctOptions: [235623, 261262, 261261], // id of options array
+      description: "",
       otherResponses: [], // ~6 random other user’s responses
       cupsResponse: "", // the model response from 7 cups
       cupsResponseDescription: "",
