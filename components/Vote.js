@@ -27,7 +27,8 @@ const Vote = (props) => {
       {props.showResults && <div className="prompt">{props.description}</div>}
       {!props.showResults && (
         <div className="prompt">
-          Which Community Guideline(s) did this member violate?{" "}
+          {/* {props.promptDifferent ? "Which community guideline(s) did this member violate? " : "What would you do next? "} this line is not working */}
+          {props.correctOptions ? "Which community guideline(s) did this member violate? " : "What would you do next? "} 
           {props.correctOptions ? "Select all that apply." : null}
         </div>
       )}

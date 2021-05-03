@@ -231,6 +231,7 @@ export const listenerDb = {
 
     // STEP 10
     {
+      promptDifferent: true, // don't ask what would you do next - ask what guidelines are broken --> it's not working check vote.js
       badResponse: "", // the bad user's response
       options: [
         {
