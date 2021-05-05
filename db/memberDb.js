@@ -19,35 +19,50 @@ export const memberDb = {
       options: [
         {
           id: 235623,
-          content: "Ignore the listener and continue",
-          selected: 0.12,
+          content: "Change the subject",
+          selected: 0.32,
         },
         {
           id: 261262,
-          content: "Respond rudely to the listener",
+          content: "Agree with the listener",
           selected: 0.03,
         },
-        { id: 261261, content: "Flag the message", selected: 0.85 },
+        { id: 261261, content: "Flag the message", selected: 0.65 },
       ],
       correctOption: 261261, // id of options array
       description:
         "We recommend immediately flagging any messages that think could be harmful to you or other members.", // little explanation of the correct answer
       otherResponses: [
-        { id: 514632, content: "You’re so rude lol." },
+        {
+          id: 514632,
+          content: "You’re so rude lol.",
+          feedback:
+            "This response does not elaborate on how the listener made you feel, and trivializes the response.",
+          rating: -1,
+        },
         {
           id: 514623,
           content:
             "The way you’re responding isn’t very helpful and doesn’t make me feel supported.",
+          feedback:
+            "This is a strong response that clearly explains how the listener made you feel",
+          rating: 1,
         },
         {
           id: 514233,
           content:
             "I don’t feel like you are using active listening to help me in this situation.",
+          feedback:
+            "This is a strong response that explains which technique the listener should be using to respond.",
+          rating: 1,
         },
         {
           id: 512362,
           content:
             "As a member of 7 Cups, I don’t feel very supported by you right now.",
+          feedback:
+            "This is an okay response, but could use more detail on how the listener is not being supportive.",
+          rating: 0,
         },
       ], // ~6 random other user’s responses
       cupsResponse:
@@ -68,8 +83,12 @@ export const memberDb = {
           content: "Remain professional, kind, and respectful",
           selected: 0.78,
         },
-        { id: 261262, content: "Don’t give advice", selected: 0.73,},
-        { id: 261261, content: "Never create multiple accounts", selected: 0.21,},
+        { id: 261262, content: "Don’t give advice", selected: 0.73 },
+        {
+          id: 261261,
+          content: "Never create multiple accounts",
+          selected: 0.21,
+        },
       ],
       correctOptions: [235623, 261262], // id of options array
       description:
@@ -108,10 +127,19 @@ export const memberDb = {
       options: [
         {
           id: 235623,
-          content: "Engaging in flirting or sexting", selected: 0.91
+          content: "Engaging in flirting or sexting",
+          selected: 0.91,
         },
-        { id: 261262, content: "Sharing links to personal information", selected: 0.89 },
-        { id: 261261, content: "Maintaining a confidential atmosphere", selected: 0.90 },
+        {
+          id: 261262,
+          content: "Sharing links to personal information",
+          selected: 0.89,
+        },
+        {
+          id: 261261,
+          content: "Maintaining a confidential atmosphere",
+          selected: 0.9,
+        },
       ],
       correctOptions: [235623, 261262, 261261], // id of options array
       description: "",
