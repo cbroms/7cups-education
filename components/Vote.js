@@ -28,7 +28,9 @@ const Vote = (props) => {
       {!props.showResults && (
         <div className="prompt">
           {/* {props.promptDifferent ? "Which community guideline(s) did this member violate? " : "What would you do next? "} this line is not working */}
-          {props.correctOptions ? "Which community guideline(s) did this member violate? " : "What would you do next? "} 
+          {props.correctOptions
+            ? "Which community guideline(s) did this member violate? "
+            : "They responded. What would you do next? "}
           {props.correctOptions ? "Select all that apply." : null}
         </div>
       )}
@@ -72,11 +74,12 @@ const Vote = (props) => {
           );
         })}
         {props.showResults && (
-          <div className={styles.resultsText}>Note: majority selection by users does not always match the recommended option</div>
+          <div className={styles.resultsText}>
+            Note: majority selection by users does not always match the
+            recommended option
+          </div>
         )}
       </div>
-     
-
     </React.Fragment>
   );
 };

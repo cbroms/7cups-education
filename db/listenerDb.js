@@ -23,21 +23,42 @@ export const listenerDb = {
       description:
         "At this point it would probably be best to inquire more about their situation.", // little explanation of the correct answer
       otherResponses: [
-        { id: 514632, content: "What’s on your mind?" },
-        { id: 514623, content: "That’s interesting... tell me more!" },
+        {
+          id: 514632,
+          content: "What’s on your mind?",
+          feedback:
+            "This is an okay response, but could include more detail and empathetic language.",
+          rating: 0,
+        },
+        {
+          id: 514623,
+          content: "That’s interesting... tell me more.",
+          feedback:
+            "This response is vague and could come across as being inattentive to what the user is speaking to you about.",
+          rating: 0,
+        },
         {
           id: 514233,
-          content: "How can I help?",
+          content: "That's interesting to hear",
+          feedback:
+            "This is an inappropriate response that doesn't show active listening. It doesn't open up the conversation for support.",
+          rating: -1,
         },
         {
           id: 512362,
           content:
             "I’m sorry, I feel that way sometimes too. Do you want to talk about it? I’m here to help.",
+          feedback:
+            "This is a strong response that shows active listening and empathy, while also prompting the member to elaborate if they feel comfortable.",
+          rating: 1,
         },
         {
           id: 514644,
           content:
             "Feeling lonely is a normal thing! Is there anything in particular that is going on?",
+          feedback:
+            "This is a strong response that reassures the member wile also prompting them to elaborate if they feel comfortable.",
+          rating: 1,
         },
       ], // ~6 random other user’s responses
       cupsResponse:
@@ -94,20 +115,38 @@ export const listenerDb = {
           id: 514632,
           content:
             "I’m here to help you, but the spaces here must be treated with mutual respect.",
+          feedback:
+            "This response is an appropriate and succinct warning. It might be useful to refer to the guidelines.",
+          rating: 0,
         },
         {
           id: 514623,
           content: "Please don’t use that language. I’m here to help you.",
+          feedback:
+            "This response is an appropriate and succinct warning. It might be useful to refer to the guidelines.",
+          rating: 0,
         },
         {
           id: 514233,
           content: "That’s not appropriate.",
+          feedback:
+            "This response does not show empathy and requires more elaboration on why this behavior is inappropriate.",
+          rating: -1,
         },
-        { id: 512362, content: "Please refer to the 7 Cups guidelines." },
+        {
+          id: 512362,
+          content: "Please refer to the 7 Cups guidelines.",
+          feedback:
+            "It's great to refer to the guidelines, but we want to remember that members are often struggling and require a more empathetic response.",
+          rating: -1,
+        },
         {
           id: 514644,
           content:
             "I know that what you’re going through must be tough, but there’s no need to use that language here on 7 Cups.",
+          feedback:
+            "This is a strong response that shows empathy first, before appropriately warning members of what behavior is inappropriate.",
+          rating: 1,
         },
       ], // ~6 random other user’s responses
       cupsResponse:
@@ -142,21 +181,40 @@ export const listenerDb = {
         {
           id: 514632,
           content:
-            "I’m sorry you feel that I’m not being helpful. We can talk more about how you’re feeling.",
+            "I’m sorry you feel that I’m not being helpful. We can talk more about how you’re feeling. I will respond as soon as I am able to",
+          feedback:
+            "This is a strong response that explains how 7 Cups chats can help members. It also sets appropriate expectations between listeners and members.",
+          rating: 1,
         },
         {
           id: 514623,
           content: "Please don’t use that language. I’m here to help you.",
+          feedback:
+            "This response is okay, but could include more information about how listeners can provide support, as well as what members should expect in 7 Cups chats.",
+          rating: 0,
         },
         {
           id: 514233,
           content: "I am helping you.",
+          feedback:
+            "This response is dismissive and unhelpful. We should honor members' feelings, even if they are frustrated.",
+          rating: -1,
         },
-        { id: 512362, content: "I’m trying to help you lol." },
+        {
+          id: 512362,
+          content: "I’m trying to help you lol.",
+          feedback:
+            "This response is very dismissive, unhelpful, and unprofessional. We should honor members' feelings, even if they are frustrated.",
+          rating: -1,
+        },
+
         {
           id: 514644,
           content:
             "Listeners can offer support through active listening. I’d be happy to talk with you and help you.",
+          feedback:
+            "This is a strong response that explains how 7 Cups chats can help members. It also sets appropriate expectations between listeners and members.",
+          rating: 1,
         },
       ], // ~6 random other user’s responses
       cupsResponse:
@@ -209,18 +267,40 @@ export const listenerDb = {
         {
           id: 514632,
           content: "**** why would I have to put up with someone like you",
+          feedback:
+            "Ensure you're also following the guidelines and remaining professional. Don't escalate the situation.",
+          rating: -1,
         },
-        { id: 514623, content: "Reported." },
+        {
+          id: 514623,
+          content: "Reported.",
+          feedback:
+            "This response doesn't provide any additional context and could just escalate the situation further.",
+          rating: -1,
+        },
+
         {
           id: 514233,
           content: "There's nothing I can do",
+          feedback:
+            "This response doesn't escalate the situation, but it also doesn't provide any additional context about what the member did wrong.",
+          rating: 0,
         },
         {
           id: 512362,
           content:
-            "You repeatedly broke our guideline. I will have to report you.",
+            "You repeatedly broke our guidelines. I will have to report you and end this chat.",
+          feedback:
+            "This is an excellent response that lets the member know what they've done wrong, and closes the situation without escalating it.",
+          rating: 1,
         },
-        { id: 514644, content: "I will just end the chat. Bye." },
+        {
+          id: 514644,
+          content: "fine, i will just end the chat. bye.",
+          feedback:
+            "This response doesn't provide any additional context and is unprofessional.",
+          rating: -1,
+        },
       ], // ~6 random other user’s responses
       cupsResponse:
         "You have repeatedly broken community guidelines. I’m sorry, but I’m going to end this chat.", // the model response from 7 cups

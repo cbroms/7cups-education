@@ -23,7 +23,7 @@ const Step = (props) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [userResponse, setUserResponse] = useState("");
   const [step, setStep] = useState(0);
-  const [endStep, setEndStep] = useState(4);
+  const [endStep, setEndStep] = useState(5);
 
   useEffect(() => {
     setSelectedOptions([]);
@@ -32,7 +32,7 @@ const Step = (props) => {
       // if there are no free response options, end the scenario before that step
       setEndStep(1);
     } else {
-      setEndStep(4);
+      setEndStep(5);
     }
     // add the bad user's response
     if (props.data.badResponse) {
@@ -73,6 +73,7 @@ const Step = (props) => {
       setStep(step + 1);
     } else if (step === 4) {
       // TODO: submit voting on answers
+      setStep(step + 1);
     } else {
       setStep(step + 1);
     }
@@ -99,9 +100,11 @@ const Step = (props) => {
         }}
       />
     );
-  } else if (props.data && step === 3) {
-    stepElement = <Answers responses={props.data.otherResponses} />;
-  } else if (props.data && step === 4) {
+  } else if (props.data && (step === 3 || step === 4)) {
+    stepElement = (
+      <Answers responses={props.data.otherResponses} showScore={step === 4} />
+    );
+  } else if (props.data && step === 5) {
     // the last message is the 7cups model message
     stepElement = (
       <Example

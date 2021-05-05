@@ -22,28 +22,51 @@ const Answers = (props) => {
 
   return (
     <React.Fragment>
-      <div className="prompt">
-        Here are a few responses other {getScenario()}s suggested. Select all
-        those you think would be appropriate.
-      </div>
+      {props.showScore ? (
+        <div className="prompt">Here's some feedback on these responses.</div>
+      ) : (
+        <div className="prompt">
+          Here are a few responses other {getScenario()}s suggested. Select all
+          those you think would be appropriate.
+        </div>
+      )}
       <div className={styles.answersWrapper}>
         {props.responses.map((response) => {
           return (
-            <div
-              key={response.id}
-              className={styles.answer}
-              onClick={() => toggleSelected(response.id)}
-            >
-              <Message
-                message={{ content: response.content, author: "me" }}
-                fullWidth
-              />
+            <React.Fragment key={response.id}>
               <div
-                className={`${styles.selected} ${
-                  selected.includes(response.id) ? styles.filled : null
-                }`}
-              ></div>
-            </div>
+                className={styles.answer}
+                onClick={() =>
+                  !props.showScore ? toggleSelected(response.id) : null
+                }
+              >
+                <div className={styles.answerRow}>
+                  <Message
+                    message={{ content: response.content, author: "me" }}
+                    fullWidth
+                  />
+                  <div
+                    className={`${styles.selected} ${
+                      selected.includes(response.id) ? styles.filled : null
+                    }`}
+                  ></div>
+                </div>
+
+                {props.showScore ? (
+                  <div
+                    className={`${styles.answerFeedback} ${
+                      response.rating === 0
+                        ? styles.neutral
+                        : response.rating === -1
+                        ? styles.bad
+                        : styles.good
+                    }`}
+                  >
+                    {response.feedback}
+                  </div>
+                ) : null}
+              </div>
+            </React.Fragment>
           );
         })}
       </div>
