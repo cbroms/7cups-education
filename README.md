@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 7 Cups Difficult Member Scenarios
+
+A member and listener scenario that helps teach how to deal with bad behavior when it's encountered on 7 Cups.
+
+This is a [Next.js](https://nextjs.org/) project; it can be built as a series of static pages.
 
 ## Getting Started
 
-First, run the development server:
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Each page is defined in `/pages/scenario/...`. There are two scenarios, `listener` and `member`. The data that each uses can be found in `/db`, currently each is a JSON file. In the future having a real database to collect actual member and listener responses would be ideal.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Each scenario is comprised of a series of _steps_. The data for these steps is an object in the array of `steps` in the member and listner json files. The route that handles rendering each step is in `/pages/scenario/[scenarioId]/step/[stepId].js`. Each step has a few parts:
 
-## Learn More
+1. Vote on what to do in the given scenario
+2. Show the results of the vote (which is recommended, and the percent of others that picked each choice)
+3. How would you respond to the scenario? (free response)
+4. Vote on others' responses
+5. Model 7 Cups response
 
-To learn more about Next.js, take a look at the following resources:
+Then the step is complete, the next bad message is added, and the process repeats for the next step. Note that parts 3 - 5 are optional and can be omitted, but the data for steps 1 - 2 must always be present in the json file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project is currently hosted on Vercel as a demo, find it at [7cups-education.vercel.app](https://7cups-education.vercel.app/).
 
-## Deploy on Vercel
+Build the project by running:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run build
+```
